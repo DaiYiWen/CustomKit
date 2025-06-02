@@ -1,0 +1,31 @@
+//
+//  PrefixHeader.pch
+//  CustomKit
+//
+//  Created by 戴义文 on 2025/6/1.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "FunctionH.h"
+#import "NoticeThat.h"
+#import "HeaderFile.h"
+
+//1.13
+#define PT(size)\
+({\
+CGFloat height=1.0405;\
+if (size>15) {\
+height=1.0405;\
+}else{\
+height=1.0405;\
+}\
+(size*height);\
+})\
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
+
