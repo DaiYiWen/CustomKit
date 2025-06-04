@@ -30,6 +30,9 @@
 - (void)dealloc
 {
     RemoveNotice(UIMenuControllerWillHideMenuNotification);
+    
+    
+
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
