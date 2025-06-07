@@ -38,18 +38,6 @@ statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;\
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-#define WGtabBarLineColor WGCOLORA(216,216,216)
-#define WGCOLORA(r,g,b) (WG_COLOR(r,g,b,1))
-#define WG_CLEAR [UIColor clearColor]
-#define WG_WHITE [UIColor whiteColor]
-#define WG_BLACK [UIColor blackColor]
-#define WG_BLUE  [UIColor blueColor]
-#define WG_RED [UIColor redColor]
-#define WG_GREEN [UIColor greenColor]
-#define WG_YELLOW [UIColor yellowColor]
-//通过三色值获取颜色对象
-#define WG_COLOR(r,g,b,a) ([UIColor colorWithRed:(float)r/255.f green:(float)g/255.f blue:(float)b/255.f alpha:a])
-
 #define WG_SCREEN_WIDTH  ([[UIScreen mainScreen] bounds].size.width)
 #define WG_SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 
@@ -62,7 +50,7 @@ statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;\
 #define WEAKSELF __weak typeof(self)  weakSelf = self;
 
 //判断是否是ipad
-#define isPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+//#define isPad ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 //判断iPhone4系列
 #define kiPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) && !isPad : NO)
 //判断iPhone5系列
@@ -83,45 +71,21 @@ statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;\
 
 #define WeakSelf(ws) __weak __typeof(&*self)weakSelf = self
 
-#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 //获取图片资源
 #define GetImage(imageName) [UIImage imageNamed:[NSString stringWithFormat:@"%@",imageName]]
 
 #define TagValue  1000
 #define AlertTime 0.2 //弹出动画时间
 
-#define iOS11NavigationHeight()\
-({\
-CGFloat height=0;\
-if (@available(iOS 11.0, *)) {\
-    height=NavigationHeight;\
-}else{\
-    height=0;\
-}\
-(height);\
-})\
+// block 宏
+#define weakSelf(self) __weak typeof(self) weakSelf = self;
+#define strongSelf(self)__strong typeof(weakSelf) strongSelf = self;
 
-#define iOS10NavigationHeight()\
-({\
-CGFloat height=0;\
-if (@available(iOS 11.0, *)) {\
-height=0;\
-}else{\
-height=NavigationHeight;\
-}\
-(height);\
-})\
+//判断是是否是Pad
+#define Is_IPad ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
 
-#define iOS10NavigationHeightB()\
-({\
-CGFloat height=0;\
-if (@available(iOS 11.0, *)) {\
-height=10;\
-}else{\
-height=0;\
-}\
-(height);\
-})\
+//判断对象不为空
+#define NotEmpty_String(obj) (obj&&((NSNull *)obj!=[NSNull null]) && [obj isKindOfClass:[NSString class]] && [obj length] > 0)
 
 #define FeedbackGenerator()\
 ({\

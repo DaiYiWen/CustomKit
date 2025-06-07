@@ -5,6 +5,7 @@
 #import "UIColor+D.h"
 
 @implementation UIColor (D)
+
 + (UIColor *)D_ColorStr: (NSString *)color
 {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -39,7 +40,7 @@
     return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
 }
 
-+ (UIColor *)D_ColorStrB: (NSString *)color Alpha:(CGFloat)Alpha{
++ (UIColor *)D_ColorStr: (NSString *)color Alpha:(CGFloat)Alpha{
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // String should be 6 or 8 characters

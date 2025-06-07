@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
  自定义初始化
  */
 +(UILabel*)initLabelColor:(NSString*)colorStr font:(UIFont*)font text:(NSString*)textStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

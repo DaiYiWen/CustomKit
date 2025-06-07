@@ -14,11 +14,15 @@
 ({\
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(function:) name:str object:nil];\
 })\
+
+
 //发送通知(带参数)
 #define SendNotice(name,str)\
 ({\
 [[NSNotificationCenter defaultCenter]postNotificationName:name object:nil userInfo:@{@"parameter":str}];\
 })\
+
+
 //移除通知
 #define RemoveNotice(str)\
 ({\

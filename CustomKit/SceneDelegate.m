@@ -7,6 +7,8 @@
 
 #import "SceneDelegate.h"
 
+#import "HomePag_VC.h"
+
 @interface SceneDelegate ()
 
 @end
@@ -18,6 +20,29 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    
+    
+    if (scene) {
+        
+
+        // 创建要管理的视图控制器
+        HomePag_VC *vc1 = [[HomePag_VC alloc] init];
+        
+        // 为每个标签页创建导航控制器
+        UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
+
+        UIWindowScene *windowScene = (UIWindowScene *)scene;
+        
+        self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+        
+        self.window.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        
+        self.window.rootViewController = nav1;
+        
+        [self.window makeKeyAndVisible];
+        
+    }
+
 }
 
 
