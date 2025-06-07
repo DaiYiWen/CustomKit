@@ -72,6 +72,8 @@
     
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
     
+    cell.textLabel.textColor = RGBA(115, 115, 195, 1);
+    
     return cell;
     
 }
