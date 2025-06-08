@@ -1,29 +1,28 @@
 //
-//  HomePag_VC.m
+//  UiKit_VC.m
 //  CustomKit
 //
 //  Created by 戴义文 on 2025/6/1.
 //
 
-#import "HomePag_VC.h"
+#import "CALayer_VC.h"
 
-@interface HomePag_VC ()<UITableViewDelegate,UITableViewDataSource>
+@interface CALayer_VC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
 
-@property (nonatomic,strong) NSMutableArray *SectionArray;
-
-@property (nonatomic,strong) NSMutableArray *ClassNameArray;
+@property (nonatomic,strong) NSArray *SectionArray;
+@property (nonatomic,strong) NSArray *ClassArray;
 
 @end
 
-@implementation HomePag_VC
+@implementation CALayer_VC
 
 - (void)GetData{
     
-    self.SectionArray = [NSMutableArray arrayWithArray:@[@"UIKit",@"CALayer",@"Audio and Video",@"Animation"]];
+    self.SectionArray = @[@"CAShapeLayer",@"CATextLayer"];
     
-    self.ClassNameArray = [NSMutableArray arrayWithArray:@[@"UiKit_VC",@"CALayer_VC",@""]];
+    self.ClassArray = @[@"CAShapeLayer_VC",@"CATextLayer_VC",@"",@"",@"",@"",@""];
     
 }
 
@@ -31,43 +30,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"For study purposes";
-    
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"target"] = [@""]
-    
-    
-//    // 1. 创建FLAnimatedImageView
-//    FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc] init];
-//    imageView.frame = CGRectMake(0, 0, 200, 200);
-//    [self.view addSubview:imageView];
-//
-//    // 2. 加载GIF
-//    NSString *gifPath = [[NSBundle mainBundle] pathForResource:@"猫gif" ofType:@"gif"];
-//    NSData *gifData = [NSData dataWithContentsOfFile:gifPath];
-//
-//    FLAnimatedImage *animatedImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
-//    imageView.animatedImage = animatedImage;
-    
-    // 获取Plist文件路径
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Target Name" ofType:@"plist"];
-
-    // 读取Plist文件内容
-//    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
-//    NSArray *array = [NSArray arrayWithContentsOfFile:path]; // 如果Plist是数组结构
-
-//    // 使用数据
-//    if (dict) {
-//        NSString *value = dict[@"key"];
-//        NSLog(@"Value: %@", value);
-//    }
-    
-    
-    
-    [MySingleton sharedInstance].totalHeight = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager.statusBarFrame.size.height+self.navigationController.navigationBar.frame.size.height;
-
-    
-
     [self GetData];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
@@ -96,6 +58,7 @@
     return 1;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -120,8 +83,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
-    
-    Class class = NSClassFromString(self.ClassNameArray[indexPath.section]);
+    Class class = NSClassFromString(self.ClassArray[indexPath.section]);
 
     if (class && [class isSubclassOfClass:[UIViewController class]]) {
         

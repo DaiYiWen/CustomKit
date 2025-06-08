@@ -22,7 +22,7 @@
     
     self.SectionArray = @[@"UIColor",@"UIView",@"UILabel",@"UIButton",@"UIImageView",@"UITableView",@"UICollectionView"];
     
-    self.ClassArray = @[@"UIColor_VC",@"",@"",@"",@"",@"",@""];
+    self.ClassArray = @[@"UIColor_VC",@"UIView_VC",@"",@"",@"",@"",@""];
     
 }
 
