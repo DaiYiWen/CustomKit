@@ -30,6 +30,7 @@
 #import "Masonry.h"
 #import "FLAnimatedImage.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
+#import "SDWebImageDownloader.h"
 //**
 
 #endif /* HeaderFile_h */

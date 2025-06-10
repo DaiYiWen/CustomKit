@@ -20,9 +20,9 @@
 
 - (void)GetData{
     
-    self.SectionArray = @[@"CAShapeLayer",@"CATextLayer"];
+    self.SectionArray = @[@"CAShapeLayer",@"CATextLayer",@"CALayer+Image"];
     
-    self.ClassArray = @[@"CAShapeLayer_VC",@"CATextLayer_VC",@"",@"",@"",@"",@""];
+    self.ClassArray = @[@"CAShapeLayer_VC",@"CATextLayer_VC",@"CAImageLayer_VC",@"",@"",@"",@""];
     
 }
 
