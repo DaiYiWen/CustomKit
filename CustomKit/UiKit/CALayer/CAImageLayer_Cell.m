@@ -30,10 +30,10 @@
     _cellRow = cellRow;
     
     // 使用 SDWebImage 加载图片
-    NSURL *imageURL = [NSURL URLWithString:@"https://picsum.photos/id/4/5000/3333"];
+//    NSURL *imageURL = [NSURL URLWithString:@"https://picsum.photos/id/4/5000/3333"];
     
     // 使用SDWebImageManager检查缓存
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+//    SDWebImageManager *manager = [SDWebImageManager sharedManager];
     
 //    [manager loadImageWithURL:imageURL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
 //        
