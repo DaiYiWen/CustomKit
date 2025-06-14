@@ -13,7 +13,7 @@
 // 获取Documents目录
 + (NSString *)documentPath
 {
-    return [NSSearchPathForDirectoriesInDomains(NSHomeDirectory(), NSUserDomainMask, YES) lastObject];
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 // 获取Cache目录

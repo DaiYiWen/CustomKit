@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FileDownload_VC : UIViewController
+@interface FileDownload_VC : BaseViewController
 
 @end
 

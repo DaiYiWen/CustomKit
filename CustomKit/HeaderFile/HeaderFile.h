@@ -11,7 +11,9 @@
 #pragma mark - Tools
 
 //**
+#import "BaseViewController.h"
 #import "MySingleton.h"
+#import "FileManager.h"
 //**
 
 #pragma mark - UikitExtensio

@@ -6,6 +6,7 @@
 //
 
 #import "FileDownload_VC.h"
+#import "File_VC.h"
 
 @interface FileDownload_VC ()
 
@@ -23,6 +24,58 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIBarButtonItem *rightItem = [UIBarButtonItem new];
+//    rightItem.title = @"File";
+    rightItem.image = [UIImage systemImageNamed:@"folder"];
+    
+    weakSelf(self);
+    // 创建多个 UIAction
+    UIAction *documentsAction = [UIAction actionWithTitle:@"documents"
+                                            image:[UIImage systemImageNamed:@"folder"]
+                                         identifier:nil
+                                            handler:^(__kindof UIAction * _Nonnull action) {
+        
+        File_VC *vc = [File_VC new];
+        vc.title = @"documents";
+        vc.filePath = [FileManager documentsDir];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+
+    }];
+
+    UIAction *libraryAction = [UIAction actionWithTitle:@"Library"
+                                            image:[UIImage systemImageNamed:@"folder"]
+                                         identifier:nil
+                                            handler:^(__kindof UIAction * _Nonnull action) {
+        File_VC *vc = [File_VC new];
+        vc.title = @"Library";
+        vc.filePath = [FileManager libraryDir];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+    
+    UIAction *tmpAction = [UIAction actionWithTitle:@"tmp"
+                                            image:[UIImage systemImageNamed:@"folder"]
+                                         identifier:nil
+                                            handler:^(__kindof UIAction * _Nonnull action) {
+        File_VC *vc = [File_VC new];
+        vc.title = @"tmp";
+        vc.filePath = [FileManager tmpDir];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    }];
+
+    // 创建 UIMenu
+    UIMenu *menu = [UIMenu menuWithTitle:@""
+                               children:@[documentsAction, libraryAction, tmpAction]];
+    menu.preferredElementSize = UIMenuElementSizeLarge;
+    rightItem.menu = menu;
+    
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    
+    
+    
+    
     
     self.progress = 0.00;
     
@@ -43,7 +96,7 @@
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
 
     // 设置回调
-    __weak typeof(self) weakSelf = self;
+//    __weak typeof(self) weakSelf = self;
     dispatch_source_set_event_handler(timer, ^{
         [weakSelf timerFired];
     });
@@ -52,11 +105,20 @@
     dispatch_resume(timer);
     
     self.progressTimer = timer;
+    
+    NSFileManager*a;
+    NSCache*c;
+    
+    DLog(@"========%@",NSHomeDirectory());
+    DLog(@"========%@",[FileManager documentsDir]);
+    
+    NSArray *array = [FileManager listFilesInCachesDirectoryByDeep:NO];
+    NSArray *array1 = [FileManager listFilesInTmpDirectoryByDeep:YES];
 }
 
 // 回调方法
 - (void)timerFired {
-    DLog(@"GCD 定时器触发");
+//    DLog(@"GCD 定时器触发");
     self.progress += 0.001;
     // 注意：如果在非主线程执行，需要回到主线程更新UI
     dispatch_async(dispatch_get_main_queue(), ^{
