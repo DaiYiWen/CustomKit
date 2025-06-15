@@ -40,7 +40,11 @@
         UITextField *usernameField = alert.textFields[0];
         
         if (usernameField.text.length>0) {
-            if ([FileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",weakSelf.filePath,usernameField.text]]) {
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary ];
+            dict[@"type"] = @"aaaa";
+            dict[@"test"] = @"bbbb";
+            dict[@"cccc"] = @"dddd";
+            if ([FileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",weakSelf.filePath,usernameField.text] attributes:dict]) {
                 [weakSelf.array addObject:usernameField.text];
                 
                 if (weakSelf.array.count >= 1) {
@@ -122,7 +126,7 @@
     
     // 配置单元格
     
-//    NSDictionary *dict = [FileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@",[FileManager libraryDir],self.array[indexPath.row]]];
+    NSDictionary *dict = [FileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@",[FileManager libraryDir],self.array[indexPath.row]]];
     
     cell.textLabel.text = self.array[indexPath.row];
     

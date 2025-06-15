@@ -70,7 +70,7 @@
 
 #pragma mark - 创建文件(夹)
 // 创建文件夹
-+ (BOOL)createDirectoryAtPath:(NSString *)path;
++ (BOOL)createDirectoryAtPath:(NSString *)path attributes:(NSDictionary*)dict;
 // 创建文件夹(错误信息error)
 + (BOOL)createDirectoryAtPath:(NSString *)path error:(NSError **)error;
 // 创建文件

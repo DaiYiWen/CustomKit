@@ -33,6 +33,7 @@
 #import "FLAnimatedImage.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "SDWebImageDownloader.h"
+#import "AFNetworking.h"
 //**
 
 #endif /* HeaderFile_h */

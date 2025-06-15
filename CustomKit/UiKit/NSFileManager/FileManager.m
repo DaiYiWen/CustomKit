@@ -94,8 +94,17 @@
 }
 
 #pragma mark - 创建文件(夹)
-+ (BOOL)createDirectoryAtPath:(NSString *)path {
-    return [self createDirectoryAtPath:path error:nil];
++ (BOOL)createDirectoryAtPath:(NSString *)path attributes:(NSDictionary*)dict{
+//    return [self createDirectoryAtPath:path error:nil];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    /* createDirectoryAtPath:withIntermediateDirectories:attributes:error:
+     * 参数1：创建的文件夹的路径
+     * 参数2：是否创建媒介的布尔值，一般为YES
+     * 参数3: 属性，没有就置为nil
+     * 参数4: 错误信息
+     */
+    BOOL isSuccess = [manager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:dict error:nil];
+    return isSuccess;
 }
 
 + (BOOL)createDirectoryAtPath:(NSString *)path error:(NSError *__autoreleasing *)error {

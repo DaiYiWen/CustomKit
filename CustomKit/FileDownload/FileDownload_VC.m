@@ -8,13 +8,17 @@
 #import "FileDownload_VC.h"
 #import "File_VC.h"
 
-@interface FileDownload_VC ()
+@interface FileDownload_VC ()<NSURLSessionDelegate>
 
 @property (nonatomic,strong) UIProgressView *progressView;
 
 @property (nonatomic,assign) CGFloat progress;
 
 @property (strong, nonatomic) dispatch_source_t progressTimer;
+
+@property (nonatomic,strong) NSURLSession *session;
+@property (nonatomic,strong) NSURLSessionTask *task;
+
 @end
 
 @implementation FileDownload_VC
@@ -23,7 +27,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor whiteColor];
     
     UIBarButtonItem *rightItem = [UIBarButtonItem new];
 //    rightItem.title = @"File";
@@ -88,32 +91,90 @@
     
     
     
-    // 创建 GCD 定时器
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+//    // 创建 GCD 定时器
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+//
+//    // 设置定时器（每秒执行一次）
+//    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
+//
+//    // 设置回调
+////    __weak typeof(self) weakSelf = self;
+//    dispatch_source_set_event_handler(timer, ^{
+//        [weakSelf timerFired];
+//    });
+//
+//    // 启动定时器
+//    dispatch_resume(timer);
+//    
+//    self.progressTimer = timer;
+    
+    
+    NSURL *url = [NSURL URLWithString:@"http://speedtest.fremont.linode.com/100MB-fremont.bin"];
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
+    
+    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:url];
+    self.session =session;
+    self.task = task;
+//    [task resume];
+    
+    
+    UIButton *start = [[UIButton alloc]initWithFrame:CGRectMake(Screen_Width/2-30, 250, 60, 40)];
+    
+    [start setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    
+    [start setTitle:@"start" forState:UIControlStateNormal];
+    
+    [start addTarget:self action:@selector(start) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:start];
+    
+    UIButton *suspend = [[UIButton alloc]initWithFrame:CGRectMake(Screen_Width/2-30, 310, 60, 40)];
+    
+    [suspend setTitleColor:[UIColor systemBlueColor] forState:UIControlStateNormal];
+    
+    [suspend setTitle:@"suspend" forState:UIControlStateNormal];
+    
+    [suspend addTarget:self action:@selector(suspend) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:suspend];
+}
 
-    // 设置定时器（每秒执行一次）
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC, 0.1 * NSEC_PER_SEC);
+-(void)start{
+    [self.task resume];
+}
 
-    // 设置回调
-//    __weak typeof(self) weakSelf = self;
-    dispatch_source_set_event_handler(timer, ^{
-        [weakSelf timerFired];
+-(void)suspend{
+    [self.task suspend];
+    [self.task cancel];
+    [self.session invalidateAndCancel];//不用的话要 取消
+}
+
+// 下载进度回调
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    
+    float progress = (float)totalBytesWritten / (float)totalBytesExpectedToWrite;
+    NSLog(@"下载进度: %.2f%%", progress * 100);
+    
+    // 更新UI需要在主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 更新进度条等UI
+        self.progress = progress;
+        [self.progressView setProgress:self.progress animated:YES];
     });
+}
 
-    // 启动定时器
-    dispatch_resume(timer);
-    
-    self.progressTimer = timer;
-    
-    NSFileManager*a;
-    NSCache*c;
-    
-    DLog(@"========%@",NSHomeDirectory());
-    DLog(@"========%@",[FileManager documentsDir]);
-    
-    NSArray *array = [FileManager listFilesInCachesDirectoryByDeep:NO];
-    NSArray *array1 = [FileManager listFilesInTmpDirectoryByDeep:YES];
+// 任务完成回调（无论成功或失败）
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+    if (error) {
+        NSLog(@"下载失败: %@", error);
+    }
 }
 
 // 回调方法
