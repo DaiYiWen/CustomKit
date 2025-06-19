@@ -10,7 +10,7 @@
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "NSString+CXExtension.h"
-
+////
 // 是否正在调整曝光属性
 static NSString *kCXCameraDeviceInputPropertyAdjustingExposure = @"adjustingExposure";
 
