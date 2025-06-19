@@ -1,0 +1,26 @@
+
+//先请求通知权限
+    //设置通知代理
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    //请求通知权限
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            NSLog(@"通知权限已授权");
+        } else {
+            NSLog(@"通知权限被拒绝");
+        }
+    }];
+
+
+        <dict>
+            <key>UNNotificationExtensionCategory</key> 
+            <string>CUSTOM_CATEGORY</string>
+            <key>UNNotificationExtensionInitialContentSizeRatio</key>
+            <real>1</real>
+            <key>UNNotificationExtensionDefaultContentHidden</key> //隐藏原有页面
+            <true/>
+            <key>UNNotificationExtensionUserInteractionEnabled</key>
+            <true/>
+        </dict>
