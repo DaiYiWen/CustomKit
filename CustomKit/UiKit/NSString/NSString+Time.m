@@ -188,4 +188,53 @@
     return [formatter dateFromString:dateString];
 }
 
+
+//时间戳判断
++ (BOOL)isTimestampString:(NSString *)input{
+    // 1. 检查是否为空
+    if (input.length == 0) return NO;
+    // 2. 检查是否全为数字
+    NSCharacterSet *nonDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    if ([input rangeOfCharacterFromSet:nonDigits].location != NSNotFound) {
+        return NO;
+    }
+    // 3. 检查长度是否符合时间戳格式
+    NSUInteger length = input.length;
+    if (length != 10 && length != 13) {
+        return NO;
+    }
+    // 4. 检查时间戳是否在合理范围内（可选但推荐）
+    long long timestamp = [input longLongValue];
+    // 秒级时间戳范围检查（1970 ~ 2286年）
+    if (length == 10) {
+        return (timestamp >= 0 && timestamp <= 9999999999);
+    }
+    // 毫秒级时间戳范围检查（1970 ~ 251,000年）
+    else if (length == 13) {
+        return (timestamp >= 0 && timestamp <= 9999999999999);
+    }
+    return NO;
+}
+
+
+/**
+ *  根据时间戳和格式返回当前时间
+ */
++ (NSString *)dateStringWithTimeStamp:(NSString *)timeStamp Format:(NSString *)format {
+    
+//    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:format];
+//    [formatter setTimeZone:timeZone];
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[timeStamp longLongValue] / 1000];
+    
+    NSString *result = [formatter stringFromDate:date];
+    
+    return result;
+}
+
 @end

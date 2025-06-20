@@ -56,6 +56,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSDate *)dateSystemWithString:(NSString *)dateString format:(NSString *)forma;
 
+
+/**
+ *  时间戳判断
+ */
++ (BOOL)isTimestampString:(NSString *)input;
+
+/**
+ *  根据时间戳和格式返回当前时间
+ */
++ (NSString *)dateStringWithTimeStamp:(NSString *)timeStamp Format:(NSString *)format;
+
 @end
 
 NS_ASSUME_NONNULL_END
