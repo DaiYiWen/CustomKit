@@ -126,7 +126,7 @@
     
     // 配置单元格
     
-    NSDictionary *dict = [FileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@",[FileManager libraryDir],self.array[indexPath.row]]];
+//    NSDictionary *dict = [FileManager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@",[FileManager libraryDir],self.array[indexPath.row]]];
     
     cell.textLabel.text = self.array[indexPath.row];
     

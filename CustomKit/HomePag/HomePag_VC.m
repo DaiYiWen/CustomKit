@@ -21,9 +21,9 @@
 
 - (void)GetData{
     
-    self.SectionArray = [NSMutableArray arrayWithArray:@[@"UIKit",@"CALayer",@"Audio and Video",@"Animation",@"FileDownload",@"GCD",@"NotificationExtension"]];
+    self.SectionArray = [NSMutableArray arrayWithArray:@[@"UIKit",@"CALayer",@"Audio and Video",@"Animation",@"FileDownload",@"GCD",@"NotificationExtension",@"MVVM"]];
     
-    self.ClassNameArray = [NSMutableArray arrayWithArray:@[@"UiKit_VC",@"CALayer_VC",@"",@"",@"FileDownload_VC",@"GCD_VC",@"Notification_VC",@"",@"",@""]];
+    self.ClassNameArray = [NSMutableArray arrayWithArray:@[@"UiKit_VC",@"CALayer_VC",@"",@"",@"FileDownload_VC",@"GCD_VC",@"Notification_VC",@"UserViewController",@"",@""]];
     
 }
 

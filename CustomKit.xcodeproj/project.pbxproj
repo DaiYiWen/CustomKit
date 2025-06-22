@@ -361,7 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H8GLY4YK8N;
-				GCC_PREFIX_HEADER = "/Users/qa-test/Desktop/CustomKit/CustomKit/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = /Users/daiyiwen/Desktop/CustomKit/CustomKit/PrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CustomKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -394,7 +394,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H8GLY4YK8N;
-				GCC_PREFIX_HEADER = "/Users/qa-test/Desktop/CustomKit/CustomKit/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = /Users/daiyiwen/Desktop/CustomKit/CustomKit/PrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CustomKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -1,0 +1,20 @@
+MVVM优点
+更好的职责分离，减轻ViewController负担
+
+便于单元测试（ViewModel不依赖UI）
+
+更容易实现数据绑定
+
+提高代码复用性
+
+MVVM与MVC模式在iOS开发中的比较
+核心区别概述
+特性    MVC模式    MVVM模式
+核心组件    Model-View-Controller    Model-View-ViewModel
+控制器角色    Controller处理业务逻辑和视图逻辑    ViewModel处理业务逻辑，ViewController成为View的一部分
+数据流向    双向流动（Controller是中介）    单向数据流（View → ViewModel → Model）
+代码分布    Controller容易变得臃肿    逻辑分散到ViewModel中
+可测试性    较差（UI逻辑与业务逻辑混合）    优秀（ViewModel独立于UI）
+数据绑定    手动更新视图    自动数据绑定（通过KVO/RxSwift等）
+
+
