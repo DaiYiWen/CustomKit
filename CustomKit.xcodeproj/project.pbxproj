@@ -11,6 +11,7 @@
 		451A8BCD2E03AD2200B60358 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451A8BCC2E03AD2200B60358 /* UserNotificationsUI.framework */; };
 		451A8BD82E03AD2300B60358 /* NotificationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 451A8BC92E03AD2200B60358 /* NotificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4843132122BFD726E36DF885 /* Pods_CustomKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF288F42921509ACA89282D2 /* Pods_CustomKit.framework */; };
+		EAB7FA192E0AFA3D0081AD5E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB7FA182E0AFA2C0081AD5E /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		451A8BCC2E03AD2200B60358 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		82CC1F4A6ACF975B3D5EB868 /* Pods-CustomKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CustomKit.debug.xcconfig"; path = "Target Support Files/Pods-CustomKit/Pods-CustomKit.debug.xcconfig"; sourceTree = "<group>"; };
 		DF288F42921509ACA89282D2 /* Pods_CustomKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CustomKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAB7FA182E0AFA2C0081AD5E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EAC301742DECAC8F003445DF /* CustomKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAB7FA192E0AFA3D0081AD5E /* libsqlite3.tbd in Frameworks */,
 				4843132122BFD726E36DF885 /* Pods_CustomKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,6 +114,7 @@
 		3653041B2BD65FF37ECDAFE7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EAB7FA182E0AFA2C0081AD5E /* libsqlite3.tbd */,
 				DF288F42921509ACA89282D2 /* Pods_CustomKit.framework */,
 				451A8BCA2E03AD2200B60358 /* UserNotifications.framework */,
 				451A8BCC2E03AD2200B60358 /* UserNotificationsUI.framework */,
