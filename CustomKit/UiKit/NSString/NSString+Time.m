@@ -237,4 +237,56 @@
     return result;
 }
 
+/**
+ *  返回距离当前时间过去多久
+ */
++ (NSString *)timeAgoSinceDate:(NSDate *)date{
+    
+    
+    if (!date) return @"";
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *now = [NSDate date];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond)
+                                               fromDate:date
+                                                 toDate:now
+                                                options:0];
+    
+    // 计算各种时间单位
+    NSInteger years = components.year;
+    NSInteger months = components.month;
+    NSInteger days = components.day;
+    NSInteger hours = components.hour;
+    NSInteger minutes = components.minute;
+    NSInteger seconds = components.second;
+    
+    // 判断时间差并返回对应字符串
+    if (years >= 1) {
+        return years == 1 ? @"1年前" : [NSString stringWithFormat:@"%ld年前", (long)years];
+    }
+    else if (months >= 1) {
+        return months == 1 ? @"1个月前" : [NSString stringWithFormat:@"%ld个月前", (long)months];
+    }
+    else if (days >= 1) {
+        if (days == 1) return @"昨天";
+        if (days == 2) return @"前天";
+        return [NSString stringWithFormat:@"%ld天前", (long)days];
+    }
+    else if (hours >= 1) {
+        return hours == 1 ? @"1小时前" : [NSString stringWithFormat:@"%ld小时前", (long)hours];
+    }
+    else if (minutes >= 1) {
+        return minutes == 1 ? @"1分钟前" : [NSString stringWithFormat:@"%ld分钟前", (long)minutes];
+    }
+    else if (seconds >= 3) {
+        return @"现在";
+//        return [NSString stringWithFormat:@"%ld秒前", (long)seconds];
+    }
+    else {
+        return @"现在";
+    }
+    
+    
+}
+
 @end
